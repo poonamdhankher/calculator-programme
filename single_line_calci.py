@@ -7,52 +7,41 @@ operands = operand_operators_seperator.get_seperated_operands()
 division_multiplication= ['*', '/']
 addition_subtraction= ['+', '-']
 
+def performOperation(operator):
+    operator_position= operators.index(operator)
+    operand1= operands[operator_position]
+    operand2= operands[operator_position+1]
+
+    if(operator == "/"):
+        result1 = int(operand1) / int(operand2)
+    elif(operator == "*"):
+        result1 = int(operand1) * int(operand2)
+    elif(operator == "-"):
+        result1 = int(operand1) - int(operand2)
+    elif(operator == "+"):
+        result1 = int(operand1) + int(operand2)
+
+    operators.pop(operator_position)
+    operands.pop(operator_position)
+    operands.pop(operator_position)
+    operands.insert(operator_position, result1)
+    print("After "+operator+"  Operation: ", operands)
+
 while len(operands) > 1:
     while '/'in operators:
-        operator_position= operators.index('/')
-        operand1= operands[operator_position]
-        operand2= operands[operator_position+1]
-        result1 = int(operand1) / int(operand2)
-        operators.pop(operator_position)
-        operands.pop(operator_position)
-        operands.pop(operator_position)
-        operands.insert(operator_position, result1)
-        print("After / Operation: ", operands)
-
+        performOperation("/")
     
     while '*'in operators:
-        operator_position= operators.index('*')
-        operand1= operands[operator_position]
-        operand2= operands[operator_position+1]
-        result1 = int(operand1) * int(operand2)
-        operators.pop(operator_position)
-        operands.pop(operator_position)
-        operands.pop(operator_position)
-        operands.insert(operator_position, result1)
-        print("After * Operation: ", operands)
+        performOperation("*")
 
     
     while '-' in operators:
-        operator_position= operators.index('-')
-        operand1= operands[operator_position]
-        operand2= operands[operator_position+1]
-        result1 = int(operand1) - int(operand2)
-        operators.pop(operator_position)
-        operands.pop(operator_position)
-        operands.pop(operator_position)
-        operands.insert(operator_position, result1)
-        print("After - Operation: ", operands)
+        performOperation("-")
 
     
     while '+' in operators:
-        operator_position= operators.index('+')
-        operand1= operands[operator_position]
-        operand2= operands[operator_position+1]
-        result1 = int(operand1) + int(operand2)
-        operators.pop(operator_position)
-        operands.pop(operator_position)
-        operands.pop(operator_position)
-        operands.insert(operator_position, result1)
-        print("After + Operation: ", operands)
+        performOperation("+")
     
 print(operands)
+
+
